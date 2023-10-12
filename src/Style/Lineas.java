@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
 public class Lineas {
     

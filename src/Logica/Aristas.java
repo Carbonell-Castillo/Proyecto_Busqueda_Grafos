@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
-public class LineasDatos {
+public class Aristas {
 
     private List<Lineas> lineas;
 
-    public LineasDatos() {
+    public Aristas() {
         lineas = new ArrayList<>();
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
 public class CaminosSimples {
     

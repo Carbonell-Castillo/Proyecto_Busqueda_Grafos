@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
-public class Circulo {
+public class Vertice {
     
     //Atributos de la clase
     private char identificador;
@@ -15,7 +15,7 @@ public class Circulo {
     private Color color;
 
     //Constructor
-    public Circulo(char identificador,int x, int y) {
+    public Vertice(char identificador,int x, int y) {
         this.identificador = identificador;
         this.texto = String.valueOf(identificador);
         this.x = x;

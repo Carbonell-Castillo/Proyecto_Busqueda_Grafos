@@ -1,9 +1,9 @@
-package Vista;
+package Main;
 
-import Style.Circulo;
+import Style.Vertice;
 import Style.Lineas;
-import Logica.CirculoLogica;
-import Logica.LineasLogica;
+import Logica.VerticeCalc;
+import Logica.AristasCalc;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Josue
+ * @author Bruce Castillo
  */
 public class Ventana extends javax.swing.JFrame {
 
@@ -27,7 +27,7 @@ public class Ventana extends javax.swing.JFrame {
     private static int xmouse = 0, ymouse = 0;
     private static int click = 0;
     private static int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
-    private static boolean MAdyacencia[][] = new boolean[CirculoLogica.getCirculos().size()][CirculoLogica.getCirculos().size()];
+    private static boolean MAdyacencia[][] = new boolean[VerticeCalc.getCirculos().size()][VerticeCalc.getCirculos().size()];
     private static List<String> listaString = new ArrayList<>();
     private static List<String> listaOrdenado = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class Ventana extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
-        grafo1 = new Vista.Grafo();
+        grafo1 = new Main.Grafo();
         cmdArista = new javaswing.controls.ButtonCustom();
         cmdVertice = new javaswing.controls.ButtonCustom();
         cmdLimpiar = new javaswing.controls.ButtonCustom();
@@ -241,24 +241,24 @@ public class Ventana extends javax.swing.JFrame {
             case 1 -> {
                 try {
                     identificador = 'a';
-                    for (Circulo object : CirculoLogica.getCirculos()) {
+                    for (Vertice object : VerticeCalc.getCirculos()) {
                         if (object.getIdentificador() == identificador && (identificador >= 'a' && identificador <= 'z')) {
                             identificador++;
                         }
                     }
                 } catch (Exception e) {
                 }
-                Circulo circulo = new Circulo(identificador, xmouse, ymouse);
+                Vertice circulo = new Vertice(identificador, xmouse, ymouse);
                 identificador++;
-                CirculoLogica.addCircle(circulo);
+                VerticeCalc.addCircle(circulo);
                 grafo1.repaint();
                 llenarCb();
             }
             case 2 -> {
-                if (CirculoLogica.getCirculos().size() < 2) {
-                    JOptionPane.showMessageDialog(this, "Ingrese al menos dos vertices");
+                if (VerticeCalc.getCirculos().size() < 2) {
+                    JOptionPane.showMessageDialog(this, "No existen vertices");
                 } else {
-                    for (Circulo circulo1 : CirculoLogica.getCirculos()) {
+                    for (Vertice circulo1 : VerticeCalc.getCirculos()) {
                         if (xmouse > circulo1.getX() - 20 && ymouse > circulo1.getY() - 20 && xmouse < circulo1.getX() + 20 && ymouse < circulo1.getY() + 20) {
                             if (click == 0) {
                                 v1 = circulo1.getIdentificador();
@@ -279,13 +279,13 @@ public class Ventana extends javax.swing.JFrame {
                     }
                     if (click == 2) {
                         LineasI = 0;
-                        for (Lineas object : LineasLogica.getCirculos()) {
+                        for (Lineas object : AristasCalc.getCirculos()) {
                             if (LineasI == object.getIdentificador()) {
                                 LineasI++;
                             }
                         }
                         Lineas linea = new Lineas(LineasI, v1, v2, x1, y1, x2, y2);
-                        LineasLogica.addLine(linea);
+                        AristasCalc.addLine(linea);
                         buttonGroup1.clearSelection();
                         click = 0;
                     }
@@ -310,22 +310,22 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_grafo1MouseMoved
 
     private void inicializar() {
-        MAdyacencia = new boolean[CirculoLogica.getCirculos().size()][CirculoLogica.getCirculos().size()];
-        for (int i = 0; i < CirculoLogica.getCirculos().size(); i++) {
-            for (int j = 0; j < CirculoLogica.getCirculos().size(); j++) {
-                for (int k = 0; k < LineasLogica.getCirculos().size(); k++) {
-                    if ((CirculoLogica.getCirculos().get(i).getIdentificador() == LineasLogica.getCirculos().get(k).getV1()
-                            && CirculoLogica.getCirculos().get(j).getIdentificador() == LineasLogica.getCirculos().get(k).getV2())
-                            || (CirculoLogica.getCirculos().get(i).getIdentificador() == LineasLogica.getCirculos().get(k).getV2()
-                            && CirculoLogica.getCirculos().get(j).getIdentificador() == LineasLogica.getCirculos().get(k).getV1())) {
+        MAdyacencia = new boolean[VerticeCalc.getCirculos().size()][VerticeCalc.getCirculos().size()];
+        for (int i = 0; i < VerticeCalc.getCirculos().size(); i++) {
+            for (int j = 0; j < VerticeCalc.getCirculos().size(); j++) {
+                for (int k = 0; k < AristasCalc.getCirculos().size(); k++) {
+                    if ((VerticeCalc.getCirculos().get(i).getIdentificador() == AristasCalc.getCirculos().get(k).getV1()
+                            && VerticeCalc.getCirculos().get(j).getIdentificador() == AristasCalc.getCirculos().get(k).getV2())
+                            || (VerticeCalc.getCirculos().get(i).getIdentificador() == AristasCalc.getCirculos().get(k).getV2()
+                            && VerticeCalc.getCirculos().get(j).getIdentificador() == AristasCalc.getCirculos().get(k).getV1())) {
                         MAdyacencia[i][j] = true;
                     }
                 }
             }
         }
 
-        for (int i = 0; i < CirculoLogica.getCirculos().size(); i++) {
-            for (int j = 0; j < CirculoLogica.getCirculos().size(); j++) {
+        for (int i = 0; i < VerticeCalc.getCirculos().size(); i++) {
+            for (int j = 0; j < VerticeCalc.getCirculos().size(); j++) {
                 System.out.print(MAdyacencia[i][j] + "     ");
             }
             System.out.println("");
@@ -336,7 +336,7 @@ public class Ventana extends javax.swing.JFrame {
     private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
         // TODO add your handling code here:
         listaString.clear();
-        for (Lineas bs : LineasLogica.getCirculos()) {
+        for (Lineas bs : AristasCalc.getCirculos()) {
             bs.setColor(Color.BLACK);
         }
         if (cbV1.getSelectedIndex() >= 0 && cbV2.getSelectedIndex() >= 0) {
@@ -379,8 +379,8 @@ public class Ventana extends javax.swing.JFrame {
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        CirculoLogica.removeAllCircles();
-        LineasLogica.removeAllLines();
+        VerticeCalc.removeAllCircles();
+        AristasCalc.removeAllLines();
         cbV1.setSelectedIndex(0);
         cbV2.setSelectedIndex(0);
         int a = cbV1.getItemCount();
@@ -410,7 +410,7 @@ public class Ventana extends javax.swing.JFrame {
                 if (!listaOrdenado.contains(primerCaracterString)) {
                     listaOrdenado.add(primerCaracterString);
                     System.out.println(primerCaracterString);
-                    for (Lineas linea : LineasLogica.getCirculos()) {
+                    for (Lineas linea : AristasCalc.getCirculos()) {
                         if ((linea.getV1() == primerCaracter && linea.getV2() == segundoCaracter)
                                 || (linea.getV1() == segundoCaracter && linea.getV2() == primerCaracter)) {
                             linea.setColor(colores.get(n));
@@ -440,7 +440,7 @@ public class Ventana extends javax.swing.JFrame {
 
     }//GEN-LAST:event_listCaminosValueChanged
     public void limpiarLineas() {
-        for (Lineas linea : LineasLogica.getCirculos()) {
+        for (Lineas linea : AristasCalc.getCirculos()) {
             linea.setColor(Color.BLACK);
         }
     }
@@ -460,7 +460,7 @@ public class Ventana extends javax.swing.JFrame {
                     if (!listaOrdenado.contains(primerCaracterString)) {
                         listaOrdenado.add(primerCaracterString);
                         System.out.println(primerCaracterString);
-                        for (Lineas linea : LineasLogica.getCirculos()) {
+                        for (Lineas linea : AristasCalc.getCirculos()) {
                             if ((linea.getV1() == primerCaracter && linea.getV2() == segundoCaracter)
                                     || (linea.getV1() == segundoCaracter && linea.getV2() == primerCaracter)) {
                                 linea.setColor(colores.get(n));
@@ -517,8 +517,8 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     private void llenarCb() {
-        if (!CirculoLogica.getCirculos().isEmpty()) {
-            for (Circulo i : CirculoLogica.getCirculos()) {
+        if (!VerticeCalc.getCirculos().isEmpty()) {
+            for (Vertice i : VerticeCalc.getCirculos()) {
                 boolean repetidos = false;
                 for (int j = 0; j < cbV1.getItemCount(); j++) {
                     if (cbV1.getItemAt(j).equals(i.getIdentificador() + "")) {
@@ -578,7 +578,7 @@ public class Ventana extends javax.swing.JFrame {
     private javaswing.controls.ButtonCustom cmdLimpiar;
     private javaswing.controls.ButtonCustom cmdTodosCaminos;
     private javaswing.controls.ButtonCustom cmdVertice;
-    private Vista.Grafo grafo1;
+    private Main.Grafo grafo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

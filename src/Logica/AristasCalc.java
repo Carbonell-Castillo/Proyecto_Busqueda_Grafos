@@ -4,11 +4,11 @@ import Style.Lineas;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
-public class LineasLogica {
+public class AristasCalc {
     
-    private static LineasDatos lineasDatos = new LineasDatos();
+    private static Aristas lineasDatos = new Aristas();
     
     public static boolean addLine(Lineas linea) {
         return lineasDatos.addLine(linea);

@@ -1,16 +1,16 @@
-package Vista;
+package Main;
 
-import Style.Circulo;
+import Style.Vertice;
 import Style.Lineas;
-import Logica.CirculoLogica;
-import Logica.LineasLogica;
+import Logica.VerticeCalc;
+import Logica.AristasCalc;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
 /**
  *
- * @author Josue
+ * @author Bruce Castillo
  */
 public class Grafo extends javax.swing.JPanel {
 
@@ -46,14 +46,14 @@ public class Grafo extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         try {
-            for (Lineas Lineas : LineasLogica.getCirculos()) {
+            for (Lineas Lineas : AristasCalc.getCirculos()) {
                 Lineas.draw(g);
                 g.setColor(Color.BLACK);
                 Font font = new Font("Arial", Font.BOLD, 15);
                 g.setFont(font);
                 g.drawString(Lineas.getTexto(), ((Lineas.getX2()-Lineas.getX1())/2)+Lineas.getX1(), ((Lineas.getY2()-Lineas.getY1())/2)+Lineas.getY1() );
             }
-            for (Circulo circulo : CirculoLogica.getCirculos()) {
+            for (Vertice circulo : VerticeCalc.getCirculos()) {
                 circulo.draw(g);
                 g.setColor(Color.WHITE);
                 Font font = new Font("Arial", Font.BOLD, 13);

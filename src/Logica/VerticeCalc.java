@@ -1,16 +1,16 @@
 package Logica;
 
-import Style.Circulo;
+import Style.Vertice;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
-public class CirculoLogica {
+public class VerticeCalc {
 
-    private static CirculoDatos circulosDatos = new CirculoDatos();
+    private static Vertices circulosDatos = new Vertices();
 
-    public static boolean addCircle(Circulo circulo) {
+    public static boolean addCircle(Vertice circulo) {
         return circulosDatos.addCircle(circulo);
     }
 
@@ -22,7 +22,7 @@ public class CirculoLogica {
         return circulosDatos.removeAllCircles();
     }
     
-    public static List<Circulo> getCirculos() {
+    public static List<Vertice> getCirculos() {
        return circulosDatos.getCirculos();
    }
 }

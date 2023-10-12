@@ -4,7 +4,7 @@ import Style.CaminosSimples;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
 public class CaminosSimplesLogica {
     

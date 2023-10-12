@@ -1,17 +1,17 @@
 package Logica;
 
-import Style.Circulo;
+import Style.Vertice;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Josue
+ * @author Bruce Castillo
  */
-public class CirculoDatos {
+public class Vertices {
     
-   private List<Circulo> circulos;
+   private List<Vertice> circulos;
    
-   public CirculoDatos() {
+   public Vertices() {
        circulos = new ArrayList<>();
    }
    
@@ -30,7 +30,7 @@ public class CirculoDatos {
        return n;
    }
    
-   public boolean addCircle(Circulo circulo){
+   public boolean addCircle(Vertice circulo){
        if (buscar(circulo.getIdentificador()) == -1) {
           circulos.add(circulo); 
           return true;
@@ -53,7 +53,7 @@ public class CirculoDatos {
        return true;
    }
    
-   public List<Circulo> getCirculos() {
+   public List<Vertice> getCirculos() {
        return circulos;
    }
 }
